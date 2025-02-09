@@ -11,7 +11,8 @@ function App() {
 
     return (
       <div className='container'>
-        <h1>React Wizard Form</h1>
+        <h1 class='title'>React Wizard Form </h1>
+        <p class='emoji'>🧙</p>
         <p>Step {currentStep} </p>
         <form>
           <Step1 />
@@ -44,7 +45,7 @@ function Step3() {
   return (
     <div className='form-group'>
       <label htmlFor='password'>Password</label>
-      <input className='form-control' id='password' name='password' type='password' placeholder='Enter password' value={props.password}onChange={props.handleChange} />
+      <input className='form-control' id='password' name='password' type='password' placeholder='Enter password' /*value={props.password}onChange={props.handleChange}*/ />
     </div>
   );
 }
