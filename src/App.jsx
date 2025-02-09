@@ -9,21 +9,45 @@ function App() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const nextButton = () => {
+      if(currentStep < 3) {
+        return (
+          <button className='btn btn-next f-right' type='button' onClick={() => setCurrentStep(prevStep => prevStep + 1)}>Next</button>
+        );
+      }
+      return null;
+    }
+
+    const previousButton = () => {
+      if (currentStep > 1) {
+        return(
+          <button className='btn btn-previous' type='button' onClick={() => setCurrentStep(prevStep => prevStep -1)}>Previous</button>
+        );
+      }
+      return null;
+    }
+    
     return (
       <div className='container'>
         <h1 class='title'>React Wizard Form </h1>
         <p class='emoji'>🧙</p>
         <p>Step {currentStep} </p>
         <form>
-          <Step1 />
-          <Step2 />
-          <Step3 />
+          <Step1 currentStep={currentStep} />
+          <Step2 currentStep={currentStep} />
+          <Step3 currentStep={currentStep} />
+          {nextButton()}
+          {previousButton()}
         </form>
       </div>
     );
 }
 
-function Step1() {
+function Step1(props) {
+  if (props.currentStep !== 1) {
+    return null;
+  }
+
   return (
     <div className='form-group'>
       <label htmlFor='email'>Email address</label>
@@ -32,7 +56,11 @@ function Step1() {
   );
 }
 
-function Step2() {
+function Step2(props) {
+  if (props.currentStep !== 2) {
+    return null;
+  }
+
   return (
     <div className='form-group'>
       <label htmlFor='username'>Username</label>
@@ -41,7 +69,11 @@ function Step2() {
   );
 }
 
-function Step3() {
+function Step3(props) {
+  if (props.currentStep !== 3) {
+    return null;
+  }
+
   return (
     <div className='form-group'>
       <label htmlFor='password'>Password</label>
